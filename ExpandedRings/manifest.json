@@ -1,0 +1,10 @@
+﻿{
+  "Name": "Expanded Rings",
+  "Author": "Paul Canada",
+  "Version": "1.0.1",
+  "Description": "Adds new rings to the game.",
+  "UniqueID": "paulcanada.expandedrings",
+  "EntryDll": "ExpandedRings.dll",
+  "MinimumApiVersion": "2.0",
+  "UpdateKeys": []
+}
