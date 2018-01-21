@@ -1,26 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
+
 using StardewValley;
+using StardewValley.Menus;
+using System;
+using PyTK.Extensions;
+using PyTK.Types;
 
 namespace ExpandedRings
 {
     class ModEntry : Mod
     {
         private ModConfig config;
+        public static IModHelper helper;
 
         /**
          * Actions to perform once mod has loaded.
          **/
-        public override void Entry(IModHelper helper)
+        public override void Entry(IModHelper help)
         {
-            this.config = (ModConfig)helper.ReadConfig<ModConfig>();
-            GameEvents.OneSecondTick += GameEvents_OnSecondUpdate;
+            helper = help;
+            config = Helper.ReadConfig<ModConfig>();
 
+            RegenRing.ringTexture = Helper.Content.Load<Texture2D>("assets/ring.png");
+            new InventoryItem(new RegenRing(), this.config.regenRingPrice).addToNPCShop("Marnie");
         }
 
         /**
@@ -28,8 +33,9 @@ namespace ExpandedRings
          **/ 
         public void GameEvents_OnSecondUpdate(object sender, EventArgs args)
         {
-            RegenRing.healthRegen(this.config.regenAmount, Game1.player);
+            
         }
+
 
 
     }
