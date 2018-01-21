@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using PyTK.CustomElementHandler;
@@ -71,6 +71,20 @@ namespace ExpandedRings
             uniqueID = 3001;
             ModEntry.helper.Reflection.GetMethod(this, "loadDisplayFields").Invoke();
             build();
+        }
+
+        public static void regenLogic(float amount)
+        {
+            if (Game1.player.health < Game1.player.maxHealth)
+            {
+                Game1.player.health += (int)(Game1.player.health * amount);
+
+                if (Game1.player.health >= Game1.player.maxHealth)
+                {
+                    Game1.player.health = Game1.player.maxHealth;
+                }
+
+            }
         }
 
 

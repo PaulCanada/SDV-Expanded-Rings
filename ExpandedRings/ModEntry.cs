@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
@@ -26,6 +26,8 @@ namespace ExpandedRings
 
             RegenRing.ringTexture = Helper.Content.Load<Texture2D>("assets/ring.png");
             new InventoryItem(new RegenRing(), this.config.regenRingPrice).addToNPCShop("Marnie");
+
+            GameEvents.OneSecondTick += GameEvents_OnSecondUpdate;
         }
 
         /**
@@ -33,7 +35,12 @@ namespace ExpandedRings
          **/ 
         public void GameEvents_OnSecondUpdate(object sender, EventArgs args)
         {
-            
+            StardewValley.Farmer player = Game1.player;
+
+            if (player.leftRing.name.Equals("Ring of Regeneration") || player.rightRing.name.Equals("Ring of Regeneration"))
+            {
+                RegenRing.regenLogic(this.config.regenAmount);
+            }
         }
 
 
