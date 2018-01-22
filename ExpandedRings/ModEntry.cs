@@ -26,10 +26,8 @@ namespace ExpandedRings
 
             RegenRing.ringTexture = Helper.Content.Load<Texture2D>("assets/ring.png");
             new InventoryItem(new RegenRing(), this.config.regenRingPrice).addToNPCShop("Marnie");
-
             GameEvents.OneSecondTick += GameEvents_OnSecondUpdate;
             InputEvents.ButtonPressed += InputButtons_ButtonPressed;
-
         }
 
         private void InputButtons_ButtonPressed(object sender, EventArgsInput key)
@@ -57,6 +55,7 @@ namespace ExpandedRings
             {
                 StardewValley.Farmer player = Game1.player;
 
+                // If both of rings are not present, return
                 if (player.leftRing == null && player.rightRing == null)
                 {
                     return;

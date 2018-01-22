@@ -10,12 +10,15 @@ using System.Collections.Generic;
 
 namespace ExpandedRings
 {
+
+    // TODO: Load object via JA, link logic to object.
     public class RegenRing : Ring, ISaveElement
     {
 
         public static Texture2D ringTexture;
+        public int id = 8001;
 
-        public RegenRing()
+        public RegenRing() : base(517)
         {
             build();
         }
@@ -72,7 +75,7 @@ namespace ExpandedRings
             name = strArray[0];
             price = Convert.ToInt32(strArray[1]);
             indexInTileSheet = 517;
-            uniqueID = 3001;
+            uniqueID = Game1.year + Game1.dayOfMonth + Game1.timeOfDay + this.indexInTileSheet + Game1.player.getTileX() + (int)Game1.stats.MonstersKilled + (int)Game1.stats.itemsCrafted;
             ModEntry.helper.Reflection.GetMethod(this, "loadDisplayFields").Invoke();
             build();
         }
