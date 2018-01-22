@@ -7,7 +7,7 @@ namespace ExpandedRings
 {
     class ModConfig
     {
-        public float regenAmount { get; set; } = 0.05f;
-        public int regenRingPrice { get; set; } = 5000;
+        public float regenAmount { get; set; } = 0.01f;
+        public int regenRingPrice { get; set; } = 1;
     }
 }
