@@ -10,13 +10,12 @@ using System.Collections.Generic;
 
 namespace ExpandedRings
 {
-    class RegenRing : Ring, ISaveElement
+    public class RegenRing : Ring, ISaveElement
     {
 
         public static Texture2D ringTexture;
 
         public RegenRing()
-    :       base(517)
         {
             build();
         }
@@ -41,6 +40,11 @@ namespace ExpandedRings
             name = "Ring of Regeneration";
             displayName = "Ring of Regeneration";
             description = "You feel healthier when wearing this ring.";
+        }
+
+        public override void drawInMenu(SpriteBatch spriteBatch, Vector2 location, float scaleSize, float transparency, float layerDepth, bool drawStackNumber)
+        {
+            spriteBatch.Draw(ringTexture, location + new Vector2((float)(Game1.tileSize / 2), (float)(Game1.tileSize / 2)) * scaleSize, new Rectangle?(Game1.getSourceRectForStandardTileSheet(ringTexture, 0, 16, 16)), Color.White * transparency, 0.0f, new Vector2(8f, 8f) * scaleSize, scaleSize * (float)Game1.pixelZoom, SpriteEffects.None, layerDepth);
         }
 
         public Dictionary<string, string> getAdditionalSaveData()
@@ -77,7 +81,7 @@ namespace ExpandedRings
         {
             if (Game1.player.health < Game1.player.maxHealth)
             {
-                Game1.player.health += (int)(Game1.player.health * amount);
+                Game1.player.health += (int)(Game1.player.maxHealth * amount);
 
                 if (Game1.player.health >= Game1.player.maxHealth)
                 {
